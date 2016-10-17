@@ -97,7 +97,9 @@ public class Permission implements ModelContract {
 
     @Override
     public String toString() {
-        return "br.com.guilherme.bahia.meta_2.spring.models.Permission[ id=" + id + " ]";
+        return id + "-" + name;
     }
+
+
     
 }

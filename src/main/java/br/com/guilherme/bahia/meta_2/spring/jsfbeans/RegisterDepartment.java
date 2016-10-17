@@ -6,6 +6,7 @@
 package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
 
 import br.com.guilherme.bahia.meta_2.spring.models.Department;
+import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +20,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterDepartment {
+public class RegisterDepartment extends Register<Department>{
 
     @ManagedProperty("#{depService}")
     private DepartmentService depService;
@@ -43,10 +44,13 @@ public class RegisterDepartment {
     }
 
     public String register() {
-        depService.register(dpt);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("The Department " + this.dpt.getName() + " Is Registered Successfully"));
+        super.register(dpt);
         dpt = new Department();
-        return "";
+        return "dept.xhtml";
+    }
+
+    @Override
+    public AbstractService<Department> getService() {
+        return getDepService();
     }
 }

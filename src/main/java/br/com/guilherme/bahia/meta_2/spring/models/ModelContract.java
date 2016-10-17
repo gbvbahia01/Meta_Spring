@@ -14,4 +14,5 @@ import java.io.Serializable;
 public interface ModelContract extends Serializable{
     
     Serializable getId();
+    String getName();
 }

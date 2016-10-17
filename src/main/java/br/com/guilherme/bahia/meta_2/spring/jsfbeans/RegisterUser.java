@@ -6,8 +6,11 @@
 package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
 
 import br.com.guilherme.bahia.meta_2.spring.models.Department;
+import br.com.guilherme.bahia.meta_2.spring.models.Permission;
 import br.com.guilherme.bahia.meta_2.spring.models.User;
+import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
+import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
 import br.com.guilherme.bahia.meta_2.spring.services.UserService;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -22,25 +25,35 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterUser {
+public class RegisterUser extends Register<User> {
 
     @ManagedProperty("#{userService}")
     private UserService userService;
     @ManagedProperty("#{depService}")
     private DepartmentService depService;
+   @ManagedProperty("#{perService}")
+    private PermissionService perService;
+    
 
     private User user = new User();
 
     public String register() {
-        userService.register(user);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("The User " + this.user.getName() + " Is Registered Successfully"));
+        super.register(user);
         user = new User();
-        return "";
+        return "user.xhtml";
     }
 
-    public List<Department> getAllDeparts(){
+    @Override
+    public AbstractService<User> getService() {
+       return getUserService();
+    }
+
+    public List<Department> getAllDeparts() {
         return depService.findAll();
+    }
+
+    public List<Permission> getAllPermissions(){
+        return perService.findAll();
     }
     
     public DepartmentService getDepService() {
@@ -66,4 +79,13 @@ public class RegisterUser {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public PermissionService getPerService() {
+        return perService;
+    }
+
+    public void setPerService(PermissionService perService) {
+        this.perService = perService;
+    }
+
 }

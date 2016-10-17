@@ -5,9 +5,9 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <script name="jquery/jquery.js" library="primefaces"></script>
-        <title>Register User</title>
+        <title>Register Users</title>
     </h:head>
-    <h:form>
+    <h:form id="form">
         <p:growl id="messages"></p:growl>
         <p:panelGrid columns="2">
             <p:outputLabel value="Enter User Name:"></p:outputLabel>
@@ -20,7 +20,16 @@
                 </f:selectItems>
                 <f:converter converterId="genericConverter"/>
             </p:selectOneMenu>
+
+            <p:outputLabel value="Enter User Permission:"></p:outputLabel>
+            <p:selectManyCheckbox id="grid" value="#{registerUser.user.userPermissionList}" layout="grid" columns="3">
+                <f:selectItems value="#{registerUser.allPermissions}"  />
+                <f:converter converterId="genericConverter"/>
+            </p:selectManyCheckbox>
         </p:panelGrid>
-        <p:commandButton value="Register" action="#{registerUser.register}" update="messages"></p:commandButton>
+        <p:commandButton value="Register" action="#{registerUser.register}" update="messages form"></p:commandButton>
+        <p:menu>
+            <p:menuitem value="Back" url="index.xhtml" />
+        </p:menu>
     </h:form>
 </html>

@@ -5,18 +5,18 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <script name="jquery/jquery.js" library="primefaces"></script>
-        <title>Register Departments</title>
+        <title>Register Permissions</title>
     </h:head>
     <h:form id="form">
         <p:growl id="messages"></p:growl>
         <p:panelGrid columns="2">
-            <p:outputLabel value="Enter Department Name:"></p:outputLabel>
-            <p:inputText value="#{registerDepartment.department.name}"></p:inputText>
-            <p:outputLabel value="Enter Department description :"></p:outputLabel>
-            <p:inputText value="#{registerDepartment.department.description}"></p:inputText>
+            <p:outputLabel value="Enter Permission Name:"></p:outputLabel>
+            <p:inputText value="#{registerPermission.permission.name}"></p:inputText>
+            <p:outputLabel value="Enter Permission description :"></p:outputLabel>
+            <p:inputText value="#{registerPermission.permission.description}"></p:inputText>
 
         </p:panelGrid>
-        <p:commandButton value="Register" action="#{registerDepartment.register()}" update="messages form" ></p:commandButton>
+        <p:commandButton value="Register" action="#{registerPermission.register()}" update="messages form"></p:commandButton>
         <p:menu>
             <p:menuitem value="Back" url="index.xhtml" />
         </p:menu>
