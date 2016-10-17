@@ -62,7 +62,7 @@ public class User implements ModelContract {
     private List<Permission> userPermissionList;
     
     @JoinColumn(name = "DEPT_ID", referencedColumnName = "ID")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Department dept;
 
     public User() {
@@ -96,7 +96,7 @@ public class User implements ModelContract {
         this.description = description;
     }
 
-    @XmlTransient
+    
     public List<Permission> getUserPermissionList() {
         return userPermissionList;
     }

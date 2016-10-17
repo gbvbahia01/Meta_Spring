@@ -19,12 +19,12 @@
             <p:outputLabel value="Enter User description :"></p:outputLabel>
             <p:inputText value="#{registerUser.user.description}"></p:inputText>
             <p:outputLabel value="Enter User Departament:"></p:outputLabel>
+           
             <p:selectOneMenu id="console" value="#{registerUser.user.dept}" style="width:225px">
                 <f:selectItems value="#{registerUser.allDeparts}" >
                 </f:selectItems>
                 <f:converter converterId="genericConverter"/>
             </p:selectOneMenu>
-
             <p:outputLabel value="Enter User Permission:"></p:outputLabel>
             <p:selectManyCheckbox id="grid" value="#{registerUser.user.userPermissionList}" layout="grid" columns="3">
                 <f:selectItems value="#{registerUser.allPermissions}"  />
@@ -47,11 +47,12 @@
             <p:column headerText="Description">
                 <h:outputText value="#{usr.description}" />
             </p:column>
+            
             <p:column headerText="Department">
                 <h:outputText value="#{usr.dept.name}" />
             </p:column>
             <p:column style="width:32px;text-align: center">
-                <p:commandButton update=":form" icon="ui-icon-search" title="View">
+                <p:commandButton update=":form" icon="ui-icon-search" title="View" ajax="false">
                     <f:setPropertyActionListener value="#{usr.id}" target="#{registerUser.userEdit}" />
                 </p:commandButton>
             </p:column>

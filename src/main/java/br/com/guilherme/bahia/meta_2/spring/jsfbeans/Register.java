@@ -7,6 +7,7 @@ package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
 
 import br.com.guilherme.bahia.meta_2.spring.models.ModelContract;
 import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -14,7 +15,7 @@ import javax.faces.context.FacesContext;
  *
  * @author Guilherme
  */
-public abstract class Register<T extends ModelContract> {
+public abstract class Register<T extends ModelContract> implements Serializable{
 
     public abstract AbstractService<T> getService();
 
