@@ -5,19 +5,20 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.models;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -49,8 +50,17 @@ public class User implements ModelContract {
     @Size(max = 45)
     @Column(name = "DESCRIPTION")
     private String description;
-    @OneToMany(mappedBy = "userId")
-    private List<UserPermission> userPermissionList;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "USER_PERMISSION",
+    joinColumns = {
+        @JoinColumn(name = "USER_ID",
+        referencedColumnName = "ID")},
+    inverseJoinColumns =
+    @JoinColumn(name = "PERM_ID",
+    referencedColumnName = "ID"))
+    private List<Permission> userPermissionList;
+    
     @JoinColumn(name = "DEPT_ID", referencedColumnName = "ID")
     @ManyToOne
     private Department dept;
@@ -87,11 +97,11 @@ public class User implements ModelContract {
     }
 
     @XmlTransient
-    public List<UserPermission> getUserPermissionList() {
+    public List<Permission> getUserPermissionList() {
         return userPermissionList;
     }
 
-    public void setUserPermissionList(List<UserPermission> userPermissionList) {
+    public void setUserPermissionList(List<Permission> userPermissionList) {
         this.userPermissionList = userPermissionList;
     }
 
