@@ -1,24 +1,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<script name="jquery/jquery.js" library="primefaces"></script>
-	<title>Register User</title>
-</h:head>
-<h:form>
-	<p:growl id="messages"></p:growl>
-	<p:panelGrid columns="2">
-		<p:outputLabel value="Enter User Name:"></p:outputLabel>
-		<p:inputText value="#{registerUser.user.name}"></p:inputText>
-		<p:outputLabel value="Enter User description :"></p:outputLabel>
-                <p:calendar value="#{registerUser.user.description}"></p:calendar>
-		<p:outputLabel value="Enter User Departament:"></p:outputLabel>
-                <p:inputText value="#{registerUser.user.dept}">
-                    
-                </p:inputText>
-	</p:panelGrid>
-	<p:commandButton value="Register" action="#{registerUser.register}" update="messages"></p:commandButton>
-</h:form>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+        <title>Register User</title>
+    </h:head>
+    <h:form>
+        <p:growl id="messages"></p:growl>
+        <p:panelGrid columns="2">
+            <p:outputLabel value="Enter User Name:"></p:outputLabel>
+            <p:inputText value="#{registerUser.user.name}"></p:inputText>
+            <p:outputLabel value="Enter User description :"></p:outputLabel>
+            <p:inputText value="#{registerUser.user.description}"></p:inputText>
+            <p:outputLabel value="Enter User Departament:"></p:outputLabel>
+            <p:selectOneMenu id="console" value="#{registerUser.user.dept}" style="width:225px">
+                <f:selectItems value="#{registerUser.allDeparts}" >
+                </f:selectItems>
+                <f:converter converterId="genericConverter"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        <p:commandButton value="Register" action="#{registerUser.register}" update="messages"></p:commandButton>
+    </h:form>
 </html>

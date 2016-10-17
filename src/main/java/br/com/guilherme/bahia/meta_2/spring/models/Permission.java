@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Permission.findById", query = "SELECT p FROM Permission p WHERE p.id = :id"),
     @NamedQuery(name = "Permission.findByName", query = "SELECT p FROM Permission p WHERE p.name = :name"),
     @NamedQuery(name = "Permission.findByDescription", query = "SELECT p FROM Permission p WHERE p.description = :description")})
-public class Permission implements Serializable {
+public class Permission implements ModelContract {
 
     private static final long serialVersionUID = 1L;
     @Id

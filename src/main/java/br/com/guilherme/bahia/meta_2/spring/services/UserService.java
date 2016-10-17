@@ -21,7 +21,11 @@ public class UserService extends AbstractService<User> {
     	@PersistenceContext
 	private EntityManager em;
 
-	public EntityManager getEm() {
+    public UserService() {
+        super(User.class);
+    }
+
+	public EntityManager getEntityManager() {
 		return em;
 	}
 

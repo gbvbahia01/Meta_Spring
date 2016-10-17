@@ -20,11 +20,16 @@ public class DepartmentService extends AbstractService<Department>{
     	@PersistenceContext
 	private EntityManager em;
 
-	public EntityManager getEm() {
+    public DepartmentService() {
+        super(Department.class);
+    }
+
+	public EntityManager getEntityManager() {
 		return em;
 	}
 
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
+
 }

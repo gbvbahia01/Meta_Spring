@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "UserPermission.findAll", query = "SELECT u FROM UserPermission u"),
     @NamedQuery(name = "UserPermission.findById", query = "SELECT u FROM UserPermission u WHERE u.id = :id")})
-public class UserPermission implements Serializable {
+public class UserPermission implements ModelContract {
 
     private static final long serialVersionUID = 1L;
     @Id

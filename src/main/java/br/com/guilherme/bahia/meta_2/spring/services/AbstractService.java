@@ -5,7 +5,7 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.services;
 
-import br.com.guilherme.bahia.meta_2.spring.models.User;
+import java.util.List;
 import javax.persistence.EntityManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +15,24 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public abstract class AbstractService<T> {
 
-    public abstract EntityManager getEm();
+    public abstract EntityManager getEntityManager();
+    private Class<T> entityClass;
 
-    @Transactional
-    public void register(T usr) {
-        getEm().persist(usr);
+    public AbstractService(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
 
+    
+    @Transactional
+    public void register(T usr) {
+        getEntityManager().persist(usr);
+    }
+
+    @Transactional
+    public List<T> findAll() {
+        javax.persistence.criteria.CriteriaQuery cq
+                = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
 }
