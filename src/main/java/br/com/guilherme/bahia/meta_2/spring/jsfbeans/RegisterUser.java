@@ -13,11 +13,9 @@ import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
 import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
 import br.com.guilherme.bahia.meta_2.spring.services.UserService;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -31,9 +29,8 @@ public class RegisterUser extends Register<User> {
     private UserService userService;
     @ManagedProperty("#{depService}")
     private DepartmentService depService;
-   @ManagedProperty("#{perService}")
+    @ManagedProperty("#{perService}")
     private PermissionService perService;
-    
 
     private User user = new User();
 
@@ -45,17 +42,21 @@ public class RegisterUser extends Register<User> {
 
     @Override
     public AbstractService<User> getService() {
-       return getUserService();
+        return getUserService();
     }
 
     public List<Department> getAllDeparts() {
         return depService.findAll();
     }
 
-    public List<Permission> getAllPermissions(){
+    public List<Permission> getAllPermissions() {
         return perService.findAll();
     }
-    
+
+    public List<User> getAllUsers() {
+        return userService.findAll();
+    }
+
     public DepartmentService getDepService() {
         return depService;
     }
@@ -88,4 +89,11 @@ public class RegisterUser extends Register<User> {
         this.perService = perService;
     }
 
+    public void setUserEdit(Integer user) {
+        this.user = userService.getById(user);
+    }
+
+    public Integer getUserEdit() {
+        return this.user.getId();
+    }
 }

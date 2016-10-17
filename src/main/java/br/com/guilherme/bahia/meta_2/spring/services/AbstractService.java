@@ -5,6 +5,7 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.services;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +35,21 @@ public abstract class AbstractService<T> {
                 = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
+    }
+    
+    @Transactional
+    public void delete(T model){
+        getEntityManager().remove(model);
+        getEntityManager().flush();
+    }
+    
+    @Transactional
+    public void update(T model){
+        getEntityManager().merge(model);
+    }
+    
+    @Transactional
+    public T getById(Serializable id){
+        return getEntityManager().find(entityClass, id);
     }
 }
