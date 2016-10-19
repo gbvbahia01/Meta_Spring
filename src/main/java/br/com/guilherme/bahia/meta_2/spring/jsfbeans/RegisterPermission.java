@@ -6,7 +6,6 @@
 package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
 
 import br.com.guilherme.bahia.meta_2.spring.models.Permission;
-import br.com.guilherme.bahia.meta_2.spring.models.User;
 import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
 import java.io.Serializable;
@@ -29,7 +28,11 @@ public class RegisterPermission extends Register<Permission> implements Serializ
     private Permission permission = new Permission();
 
     public String register() {
-        super.register(permission);
+        try {
+            super.register(permission);
+        } catch (IllegalArgumentException e) {
+            errorMsg(e);
+        }
         newPermission();
         return "perm.xhtml";
     }

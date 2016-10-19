@@ -24,7 +24,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterUser extends Register<User>  implements Serializable{
+public class RegisterUser extends Register<User> implements Serializable {
 
     @ManagedProperty("#{userService}")
     private UserService userService;
@@ -36,20 +36,25 @@ public class RegisterUser extends Register<User>  implements Serializable{
     private User user = new User();
 
     public String register() {
-        super.register(user);
+        try {
+            super.register(user);
+        } catch (IllegalArgumentException e) {
+            errorMsg(e);
+        }
         newUser();
         return "user.xhtml";
     }
-    public String remove(){
+
+    public String remove() {
         super.remove(user);
         newUser();
         return "user.xhtml";
     }
-    
-    public void newUser(){
-         user = new User();
+
+    public void newUser() {
+        user = new User();
     }
-    
+
     @Override
     public AbstractService<User> getService() {
         return getUserService();
@@ -106,5 +111,5 @@ public class RegisterUser extends Register<User>  implements Serializable{
     public Integer getUserEdit() {
         return this.user.getId();
     }
-    
+
 }

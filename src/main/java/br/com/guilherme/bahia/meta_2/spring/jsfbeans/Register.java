@@ -20,7 +20,11 @@ public abstract class Register<T extends ModelContract> implements Serializable 
     public abstract AbstractService<T> getService();
 
     public void register(T entityClass) {
-        getService().register(entityClass);
+        if(entityClass.getId() == null){
+            getService().register(entityClass);
+        }else{
+            getService().update(entityClass);
+        }
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("The " + entityClass.getClass().getSimpleName() + ": "
                         + entityClass.getName() + " Is Registered Successfully"));
@@ -33,5 +37,13 @@ public abstract class Register<T extends ModelContract> implements Serializable 
                 new FacesMessage("The " + entityClass.getClass().getSimpleName() + ": "
                         + entityClass.getName() + " Is Removed Successfully"));
         return;
+    }
+
+    protected void errorMsg(IllegalArgumentException e) {
+        FacesMessage message = new FacesMessage();
+        message.rendered();
+        message.setSummary(e.getMessage());
+        message.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 }

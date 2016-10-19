@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -37,8 +38,9 @@ public class Permission implements ModelContract {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 45)
+    @Size(max = 45, min = 2, message = "Permission name must be between 2 and 45")
     @Column(name = "NAME")
+    @NotNull(message = "Permission name required")
     private String name;
     @Size(max = 45)
     @Column(name = "DESCRIPTION")

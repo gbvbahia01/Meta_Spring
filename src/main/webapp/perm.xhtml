@@ -16,7 +16,7 @@
 
             <h:panelGrid columns="2">
                 <p:outputLabel value="Enter Permission Name:"></p:outputLabel>
-                <p:inputText value="#{registerPermission.permission.name}"></p:inputText>
+                <p:inputText value="#{registerPermission.permission.name}" ></p:inputText>
                 <p:outputLabel value="Enter Permission description :"></p:outputLabel>
                 <p:inputText value="#{registerPermission.permission.description}"></p:inputText>
                 <p:commandButton value="New" action="#{registerPermission.newPermission()}" update="messages form"></p:commandButton>

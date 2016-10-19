@@ -6,14 +6,16 @@
 package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
 
 import br.com.guilherme.bahia.meta_2.spring.models.Department;
-import br.com.guilherme.bahia.meta_2.spring.models.Permission;
 import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
+import com.sun.media.sound.SoftEnvelopeGenerator;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -45,7 +47,11 @@ public class RegisterDepartment extends Register<Department> implements Serializ
     }
 
     public String register() {
-        super.register(dpt);
+        try {
+            super.register(dpt);
+        } catch (IllegalArgumentException e) {
+            errorMsg(e);
+        }
         newDepartment();
         return "dept.xhtml";
     }
