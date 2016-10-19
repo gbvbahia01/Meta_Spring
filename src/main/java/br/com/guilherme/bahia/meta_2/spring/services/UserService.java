@@ -5,7 +5,6 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.services;
 import br.com.guilherme.bahia.meta_2.spring.models.User;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
