@@ -56,6 +56,7 @@ public abstract class AbstractService<T extends ModelContract> implements Serial
     public void update(T model) {
         checkEntity(model);
         getEntityManager().merge(model);
+        getEntityManager().flush();
     }
 
     @Transactional
