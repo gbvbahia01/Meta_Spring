@@ -11,6 +11,7 @@ Update the database.properties file
 Run the system.
 
 #API REST
+Links to call and some parameters to test create and update.   
 ###User by ID   
 http://localhost:8080/Spring/rest/usr/{id}
 
