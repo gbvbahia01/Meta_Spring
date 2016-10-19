@@ -9,6 +9,7 @@ import br.com.guilherme.bahia.meta_2.spring.models.Department;
 import br.com.guilherme.bahia.meta_2.spring.models.Permission;
 import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -21,7 +22,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterPermission extends Register<Permission>{
+public class RegisterPermission extends Register<Permission>  implements Serializable{
 
     @ManagedProperty("#{perService}")
     private PermissionService perService;

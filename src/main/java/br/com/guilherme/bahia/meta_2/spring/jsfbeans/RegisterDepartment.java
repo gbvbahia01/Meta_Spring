@@ -8,6 +8,7 @@ package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
 import br.com.guilherme.bahia.meta_2.spring.models.Department;
 import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -20,7 +21,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterDepartment extends Register<Department>{
+public class RegisterDepartment extends Register<Department>  implements Serializable{
 
     @ManagedProperty("#{depService}")
     private DepartmentService depService;

@@ -22,7 +22,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -51,7 +50,6 @@ public class User implements ModelContract {
     @Column(name = "DESCRIPTION")
     private String description;
     
-    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USER_PERMISSION",
     joinColumns = {
         @JoinColumn(name = "USER_ID",
@@ -59,6 +57,7 @@ public class User implements ModelContract {
     inverseJoinColumns =
     @JoinColumn(name = "PERM_ID",
     referencedColumnName = "ID"))
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> userPermissionList;
     
     @JoinColumn(name = "DEPT_ID", referencedColumnName = "ID")

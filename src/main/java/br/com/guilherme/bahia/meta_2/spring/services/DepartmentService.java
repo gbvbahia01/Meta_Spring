@@ -5,6 +5,7 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.services;
 import br.com.guilherme.bahia.meta_2.spring.models.Department;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author Guilherme
  */
 @Component(value = "depService")
-public class DepartmentService extends AbstractService<Department>{
+public class DepartmentService extends AbstractService<Department> implements Serializable{
     
     	@PersistenceContext
 	private EntityManager em;

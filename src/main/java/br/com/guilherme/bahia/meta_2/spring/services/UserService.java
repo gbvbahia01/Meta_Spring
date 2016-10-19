@@ -5,6 +5,7 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.services;
 import br.com.guilherme.bahia.meta_2.spring.models.User;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -18,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Component
 @Transactional
-public class UserService extends AbstractService<User> {
+public class UserService extends AbstractService<User>  implements Serializable{
     
     	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	private EntityManager em;

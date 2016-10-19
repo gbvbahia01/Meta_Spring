@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Guilherme
  */
-public abstract class AbstractService<T> {
+public abstract class AbstractService<T> implements Serializable{
 
     public abstract EntityManager getEntityManager();
     private Class<T> entityClass;

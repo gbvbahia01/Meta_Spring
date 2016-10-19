@@ -26,7 +26,8 @@
                 <f:converter converterId="genericConverter"/>
             </p:selectOneMenu>
             <p:outputLabel value="Enter User Permission:"></p:outputLabel>
-            <p:selectManyCheckbox id="grid" value="#{registerUser.user.userPermissionList}" layout="grid" columns="3">
+            <p:selectManyCheckbox id="grid" value="#{registerUser.user.userPermissionList}" layout="grid" columns="3" >
+                <f:attribute name="collectionType" value="java.util.ArrayList" />
                 <f:selectItems value="#{registerUser.allPermissions}"  />
                 <f:converter converterId="genericConverter"/>
             </p:selectManyCheckbox>

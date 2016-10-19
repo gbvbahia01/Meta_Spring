@@ -12,6 +12,7 @@ import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
 import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
 import br.com.guilherme.bahia.meta_2.spring.services.UserService;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,7 +24,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterUser extends Register<User> {
+public class RegisterUser extends Register<User>  implements Serializable{
 
     @ManagedProperty("#{userService}")
     private UserService userService;

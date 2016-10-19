@@ -6,6 +6,7 @@
 package br.com.guilherme.bahia.meta_2.spring.services;
 
 import br.com.guilherme.bahia.meta_2.spring.models.Permission;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author Guilherme
  */
 @Component(value = "perService")
-public class PermissionService extends AbstractService<Permission> {
+public class PermissionService extends AbstractService<Permission> implements Serializable{
 
     @PersistenceContext
     private EntityManager em;
