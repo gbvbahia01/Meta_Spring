@@ -5,16 +5,15 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
 
-import br.com.guilherme.bahia.meta_2.spring.models.Department;
 import br.com.guilherme.bahia.meta_2.spring.models.Permission;
+import br.com.guilherme.bahia.meta_2.spring.models.User;
 import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
 import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -22,7 +21,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterPermission extends Register<Permission>  implements Serializable{
+public class RegisterPermission extends Register<Permission> implements Serializable {
 
     @ManagedProperty("#{perService}")
     private PermissionService perService;
@@ -31,15 +30,25 @@ public class RegisterPermission extends Register<Permission>  implements Seriali
 
     public String register() {
         super.register(permission);
-        permission = new Permission();
+        newPermission();
         return "perm.xhtml";
     }
-    
+
+    public String remove() {
+        super.remove(permission);
+        newPermission();
+        return "perm.xhtml";
+    }
+
+    public void newPermission() {
+        permission = new Permission();
+    }
+
     @Override
     public AbstractService<Permission> getService() {
         return getPerService();
     }
-    
+
     public Permission getPermission() {
         return permission;
     }
@@ -56,4 +65,15 @@ public class RegisterPermission extends Register<Permission>  implements Seriali
         this.perService = perService;
     }
 
+    public List<Permission> getAllPermissions() {
+        return perService.findAll();
+    }
+
+    public void setPermEdit(Integer user) {
+        this.permission = perService.getById(user);
+    }
+
+    public Integer getPermEdit() {
+        return this.permission.getId();
+    }
 }

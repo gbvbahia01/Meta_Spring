@@ -9,55 +9,63 @@
     </h:head>
     <h:form id="form">
         <p:growl id="messages"></p:growl>
-        <p:menu>
-            <p:menuitem value="Back" url="index.xhtml" />
-        </p:menu>
+        <h:panelGrid columns="1">
+            <p:menu>
+                <p:menuitem value="Back" url="index.xhtml" icon="ui-icon-circle-arrow-w"/>
+            </p:menu>
 
-        <p:panelGrid columns="2">
-            <p:outputLabel value="Enter User Name:"></p:outputLabel>
-            <p:inputText value="#{registerUser.user.name}"></p:inputText>
-            <p:outputLabel value="Enter User description :"></p:outputLabel>
-            <p:inputText value="#{registerUser.user.description}"></p:inputText>
-            <p:outputLabel value="Enter User Departament:"></p:outputLabel>
-           
-            <p:selectOneMenu id="console" value="#{registerUser.user.dept}" style="width:225px">
-                <f:selectItems value="#{registerUser.allDeparts}" >
-                </f:selectItems>
-                <f:converter converterId="genericConverter"/>
-            </p:selectOneMenu>
-            <p:outputLabel value="Enter User Permission:"></p:outputLabel>
-            <p:selectManyCheckbox id="grid" value="#{registerUser.user.userPermissionList}" layout="grid" columns="3" >
-                <f:attribute name="collectionType" value="java.util.ArrayList" />
-                <f:selectItems value="#{registerUser.allPermissions}"  />
-                <f:converter converterId="genericConverter"/>
-            </p:selectManyCheckbox>
-        </p:panelGrid>
-        <p:commandButton value="Register" action="#{registerUser.register}" update="messages form"></p:commandButton>
-        <p:spacer width="100%" height="10px"/>
-        
-        <p:dataTable id="simple" var="usr" value="#{registerUser.allUsers}">
-            <f:facet name="header">
-                <h:outputText value="Users" />
-            </f:facet>
-            <p:column headerText="Id">
-                <h:outputText value="#{usr.id}" />
-            </p:column>
-            <p:column headerText="Name">
-                <h:outputText value="#{usr.name}" />
-            </p:column>
-            <p:column headerText="Description">
-                <h:outputText value="#{usr.description}" />
-            </p:column>
+            <h:panelGrid columns="2" >
+                <p:outputLabel value="Enter User Name:"></p:outputLabel>
+                <p:inputText value="#{registerUser.user.name}"></p:inputText>
+                <p:outputLabel value="Enter User description :"></p:outputLabel>
+                <p:inputText value="#{registerUser.user.description}"></p:inputText>
+                <p:outputLabel value="Enter User Departament:"></p:outputLabel>
+
+                <p:selectOneMenu id="console" value="#{registerUser.user.dept}" style="width:225px">
+                    <f:selectItems value="#{registerUser.allDeparts}" >
+                    </f:selectItems>
+                    <f:converter converterId="genericConverter"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Enter User Permission:"></p:outputLabel>
+                <p:selectManyCheckbox id="grid" value="#{registerUser.user.userPermissionList}" layout="grid" columns="3" >
+                    <f:attribute name="collectionType" value="java.util.ArrayList" />
+                    <f:selectItems value="#{registerUser.allPermissions}"  />
+                    <f:converter converterId="genericConverter"/>
+                </p:selectManyCheckbox>
+                
+                <p:commandButton value="New" action="#{registerUser.newUser()}" update="messages form"></p:commandButton>
+                <p:commandButton value="Save" action="#{registerUser.register}" update="messages form"></p:commandButton>
+            </h:panelGrid>
             
-            <p:column headerText="Department">
-                <h:outputText value="#{usr.dept.name}" />
-            </p:column>
-            <p:column style="width:32px;text-align: center">
-                <p:commandButton update=":form" icon="ui-icon-search" title="View" ajax="false">
-                    <f:setPropertyActionListener value="#{usr.id}" target="#{registerUser.userEdit}" />
-                </p:commandButton>
-            </p:column>
-        </p:dataTable>
+            <p:spacer width="100%" height="10px"/>
 
+            <p:dataTable id="simple" var="usr" value="#{registerUser.allUsers}">
+                <f:facet name="header">
+                    <h:outputText value="Users" />
+                </f:facet>
+                <p:column headerText="Id">
+                    <h:outputText value="#{usr.id}" />
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{usr.name}" />
+                </p:column>
+                <p:column headerText="Description">
+                    <h:outputText value="#{usr.description}" />
+                </p:column>
+
+                <p:column headerText="Department">
+                    <h:outputText value="#{usr.dept.name}" />
+                </p:column>
+                <p:column style="width:128px;text-align: center">
+                    <p:commandButton update=":form" icon="ui-icon-search" title="View" ajax="false">
+                        <f:setPropertyActionListener value="#{usr.id}" target="#{registerUser.userEdit}" />
+                    </p:commandButton>
+                    <p:commandButton update=":form" icon="ui-icon-trash" title="Delete" ajax="false" onclick="return confirm('Erase: #{usr.id} - #{usr.name}');" action="#{registerUser.remove()}">
+                        <f:setPropertyActionListener value="#{usr.id}" target="#{registerUser.userEdit}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            
+        </h:panelGrid>
     </h:form>
 </html>

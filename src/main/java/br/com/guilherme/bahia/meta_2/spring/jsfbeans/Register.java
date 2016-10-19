@@ -15,7 +15,7 @@ import javax.faces.context.FacesContext;
  *
  * @author Guilherme
  */
-public abstract class Register<T extends ModelContract> implements Serializable{
+public abstract class Register<T extends ModelContract> implements Serializable {
 
     public abstract AbstractService<T> getService();
 
@@ -24,6 +24,14 @@ public abstract class Register<T extends ModelContract> implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("The " + entityClass.getClass().getSimpleName() + ": "
                         + entityClass.getName() + " Is Registered Successfully"));
+        return;
+    }
+
+    public void remove(T entityClass) {
+        getService().delete(entityClass);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("The " + entityClass.getClass().getSimpleName() + ": "
+                        + entityClass.getName() + " Is Removed Successfully"));
         return;
     }
 }

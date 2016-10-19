@@ -37,10 +37,19 @@ public class RegisterUser extends Register<User>  implements Serializable{
 
     public String register() {
         super.register(user);
-        user = new User();
+        newUser();
         return "user.xhtml";
     }
-
+    public String remove(){
+        super.remove(user);
+        newUser();
+        return "user.xhtml";
+    }
+    
+    public void newUser(){
+         user = new User();
+    }
+    
     @Override
     public AbstractService<User> getService() {
         return getUserService();
@@ -97,4 +106,5 @@ public class RegisterUser extends Register<User>  implements Serializable{
     public Integer getUserEdit() {
         return this.user.getId();
     }
+    
 }

@@ -5,6 +5,7 @@
  */
 package br.com.guilherme.bahia.meta_2.spring.services;
 
+import br.com.guilherme.bahia.meta_2.spring.models.ModelContract;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Guilherme
  */
 @Transactional
-public abstract class AbstractService<T> implements Serializable{
+public abstract class AbstractService<T extends ModelContract> implements Serializable {
 
     public abstract EntityManager getEntityManager();
     private Class<T> entityClass;
@@ -26,7 +27,11 @@ public abstract class AbstractService<T> implements Serializable{
 
     @Transactional
     public void register(T usr) {
-        getEntityManager().persist(usr);
+        if (usr.getId() == null) {
+            getEntityManager().persist(usr);
+        } else {
+            getEntityManager().merge(usr);
+        }
     }
 
     @Transactional
@@ -36,20 +41,20 @@ public abstract class AbstractService<T> implements Serializable{
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
-    
+
     @Transactional
-    public void delete(T model){
+    public void delete(T model) {
         getEntityManager().remove(model);
         getEntityManager().flush();
     }
-    
+
     @Transactional
-    public void update(T model){
+    public void update(T model) {
         getEntityManager().merge(model);
     }
-    
+
     @Transactional
-    public T getById(Serializable id){
+    public T getById(Serializable id) {
         return getEntityManager().find(entityClass, id);
     }
 }
