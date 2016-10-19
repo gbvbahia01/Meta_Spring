@@ -3,10 +3,6 @@ This is a small system with Spring 4, Hybernate 4, PrimeFaces 5 e Maven 3 runnin
 
 I am doing a pook about the integration those frameworks.
 
-I made the create and I am having a problem with LazeException right now in relation between User and Permission.
-I tryed to configurate a Spring filter (OpenEntityManagerInViewFilter) in web.xml, setup de persistence context to EXTENDED,
-set the fetch between User and Permission as EAGER, but the problem does not finish.
-
 After finish the CRUD I will make a REST service and Unit tests.
 
 #Setup
@@ -35,20 +31,19 @@ Body:
    "description": "REST DESC",
    "userPermissionList":    [
             {
-         "id": 2,
+         "id": 0,
          "name": "Usuario",
          "description": "usuario"
       },
             {
          "id": 5,
-         "name": "Monaliza",
-         "description": "Danada de Boa"
-      }
+         "name": "Admin",
+         "description": "Super User"  }
    ],
    "dept":    {
       "id": 3,
-      "name": "Buu",
-      "description": "AAA"
+      "name": "Finance",
+      "description": "A lot of money"
    }
 }
 
@@ -58,7 +53,7 @@ http://localhost:8080/Spring/rest/usr/update
 
 Body:
 {
-	"id" : 18,
+	"id" : 1,
    "name": "REST_UP_UP",
    "description": "REST DESC UP",
    "userPermissionList":    [
@@ -69,14 +64,14 @@ Body:
       },
             {
          "id": 5,
-         "name": "Monaliza",
-         "description": "Danada de Boa"
+         "name": "Admin",
+         "description": "Super User"
       }
    ],
    "dept":    {
       "id": 3,
-      "name": "Buu",
-      "description": "AAA"
+      "name": "Finance",
+      "description": "A lot of money"
    }
 }
 
