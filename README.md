@@ -7,9 +7,13 @@ Next step is to do a JMS with Spring
 
 #Setup
 Setup this project is easy.
+
 Run the DB.sql in a DB that you prefer.
+
 Configure persistence.xml for this DB.
+
 Update the database.properties file
+
 Run the system.
 
 #API REST
