@@ -13,7 +13,68 @@ After finish the CRUD I will make a REST service and Unit tests.
 Setup this project is easy.
 Run the DB.sql in a DB that you prefer.
 Configure persistence.xml for this DB.
+Update the database.properties file
 Run the system.
 
+#API REST
+User by ID
+http://localhost:8080/Spring/rest/usr/{id}
+
+All Users
+http://localhost:8080/Spring/rest/usrs
+
+Create User
+http://localhost:8080/Spring/rest/usr/create
+Body:
+{
+   "name": "REST",
+   "description": "REST DESC",
+   "userPermissionList":    [
+            {
+         "id": 2,
+         "name": "Usuario",
+         "description": "usuario"
+      },
+            {
+         "id": 5,
+         "name": "Monaliza",
+         "description": "Danada de Boa"
+      }
+   ],
+   "dept":    {
+      "id": 3,
+      "name": "Buu",
+      "description": "AAA"
+   }
+}
+
+Update User
+http://localhost:8080/Spring/rest/usr/update
+Body:
+{
+	"id" : 18,
+   "name": "REST_UP_UP",
+   "description": "REST DESC UP",
+   "userPermissionList":    [
+            {
+         "id": 2,
+         "name": "Usuario",
+         "description": "usuario"
+      },
+            {
+         "id": 5,
+         "name": "Monaliza",
+         "description": "Danada de Boa"
+      }
+   ],
+   "dept":    {
+      "id": 3,
+      "name": "Buu",
+      "description": "AAA"
+   }
+}
+
+Delete User by ID
+http://localhost:8080/Spring/rest/usr/delete/{id}
 
 
