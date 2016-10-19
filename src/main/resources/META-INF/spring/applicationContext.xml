@@ -45,15 +45,14 @@
 
     <!-- Define Hibernate JPA Vendor Adapter -->
     <bean id="jpaVendorAdapter"
-              class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="databasePlatform"
-                          value="org.hibernate.dialect.MySQLDialect" />
+                  value="org.hibernate.dialect.MySQLDialect" />
     </bean>	
 
-    	<!-- Necessary to get the entity manager injected into the factory bean -->
-	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-        	<!-- Detect @Transactional -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-        <!--tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/-->
-
+    <!-- Necessary to get the entity manager injected into the factory bean -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+    <!-- Detect @Transactional -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!--tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/-->
 </beans>
