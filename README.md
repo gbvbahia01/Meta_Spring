@@ -1,8 +1,6 @@
 # Concept Proof (Spring 4)
-This is a small system with Spring 4, Hybernate 4 (JPA), PrimeFaces 5 e Maven 3 running at Tomcat.
-
-I am doing a small app about the integration those frameworks.
-
+This is a small system with Spring 4, Hybernate 4 (JPA), PrimeFaces 5 e Maven 3 running at Tomcat.   
+I am doing a small app about the integration those frameworks.   
 Next step is to do a JMS with Spring
 
 #Setup
@@ -13,13 +11,13 @@ Update the database.properties file
 Run the system.
 
 #API REST
-User by ID   
+###User by ID   
 http://localhost:8080/Spring/rest/usr/{id}
 
-All Users   
+###All Users   
 http://localhost:8080/Spring/rest/usrs
 
-Create User   
+###Create User   
 http://localhost:8080/Spring/rest/usr/create   
 Body:
 {   
@@ -43,7 +41,7 @@ Body:
    }   
 }   
 
-Update User   
+###Update User   
 http://localhost:8080/Spring/rest/usr/update   
 Body:   
 {   
@@ -69,7 +67,7 @@ Body:
    }   
 }   
 
-Delete User by ID   
+###Delete User by ID   
 http://localhost:8080/Spring/rest/usr/delete/{id}
 
 
