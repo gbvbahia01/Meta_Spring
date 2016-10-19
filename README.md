@@ -18,13 +18,17 @@ Run the system.
 
 #API REST
 User by ID
+
 http://localhost:8080/Spring/rest/usr/{id}
 
 All Users
+
 http://localhost:8080/Spring/rest/usrs
 
 Create User
+
 http://localhost:8080/Spring/rest/usr/create
+
 Body:
 {
    "name": "REST",
@@ -49,7 +53,9 @@ Body:
 }
 
 Update User
+
 http://localhost:8080/Spring/rest/usr/update
+
 Body:
 {
 	"id" : 18,
@@ -75,6 +81,7 @@ Body:
 }
 
 Delete User by ID
+
 http://localhost:8080/Spring/rest/usr/delete/{id}
 
 
