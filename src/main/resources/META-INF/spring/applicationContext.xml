@@ -37,8 +37,6 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
-
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
         <property name="persistenceUnitName" value="spring_war_PU"/>
         <property name="dataSource" ref="dataSource"/>
@@ -52,6 +50,10 @@
                           value="org.hibernate.dialect.MySQLDialect" />
     </bean>	
 
-    
+    	<!-- Necessary to get the entity manager injected into the factory bean -->
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+        	<!-- Detect @Transactional -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+        <!--tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/-->
 
 </beans>
