@@ -3,7 +3,7 @@ This is a small system with Spring 4, Hybernate 4, PrimeFaces 5 e Maven 3 runnin
 
 I am doing a pook about the integration those frameworks.
 
-After finish the CRUD I will make a REST service and Unit tests.
+Next step is to do a JMS with Spring
 
 #Setup
 Setup this project is easy.
