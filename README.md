@@ -1,4 +1,4 @@
-# Meta_Spring
+# Concept Proof (Spring 4)
 This is a small system with Spring 4, Hybernate 4, PrimeFaces 5 e Maven 3 running at Tomcat.
 
 I am doing a pook about the integration those frameworks.
