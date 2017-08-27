@@ -79,11 +79,11 @@ http://localhost:8080/Spring/rest/usr/delete/{id}
 
 
 ### Create a Department (POST)
-*This Rest service uses a JMS queue to save new Departments.*
-*The Spring configuration of the JMS was made using a Configuration class instead Spring XML*
-*Look at package **br.com.guilherme.bahia.volvo.spring.jms.setup** to see all JMS Spring setup*
+*This Rest service uses a JMS queue to save new Departments.*   
+*The Spring configuration of the JMS was made using a Configuration class instead Spring XML.*   
+*Look at package **br.com.guilherme.bahia.volvo.spring.jms.setup** to see all JMS Spring setup*   
 
-http://localhost:8080/Spring/rest/dep/create
+http://localhost:8080/Spring/rest/dep/create   
 Body:  
 ```json 
 {  
