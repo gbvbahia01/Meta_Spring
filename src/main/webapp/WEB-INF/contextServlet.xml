@@ -4,19 +4,15 @@
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:context="http://www.springframework.org/schema/context"
              xmlns:mvc="http://www.springframework.org/schema/mvc"
-             xmlns:tx="http://www.springframework.org/schema/tx"
-             xmlns:aop="http://www.springframework.org/schema/aop" 
              xmlns:util="http://www.springframework.org/schema/util"
              xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans     http://www.springframework.org/schema/beans/spring-beans.xsd
-                http://www.springframework.org/schema/tx        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven />
-    <tx:annotation-driven transaction-manager="transactionManager" />
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
@@ -32,6 +28,6 @@
     <!-- Configure bean to convert JSON to POJO and vice versa -->
     <beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
     </beans:bean>	
-    <context:component-scan base-package="br.com.guilherme.bahia.meta_2.spring"></context:component-scan>
+    <context:component-scan base-package="br.com.guilherme.bahia.volvo.spring"></context:component-scan>
     <context:annotation-config />
 </beans:beans>

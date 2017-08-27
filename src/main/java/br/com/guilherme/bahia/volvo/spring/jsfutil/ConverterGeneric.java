@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.jsfutil;
+package br.com.guilherme.bahia.volvo.spring.jsfutil;
 
-import br.com.guilherme.bahia.meta_2.spring.models.ModelContract;
+import br.com.guilherme.bahia.volvo.spring.models.ModelContract;
 import java.util.Map;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

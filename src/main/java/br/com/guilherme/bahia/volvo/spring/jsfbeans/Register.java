@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
+package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 
-import br.com.guilherme.bahia.meta_2.spring.models.ModelContract;
-import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
+import br.com.guilherme.bahia.volvo.spring.models.ModelContract;
+import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -17,7 +17,7 @@ import javax.faces.context.FacesContext;
  */
 public abstract class Register<T extends ModelContract> implements Serializable {
 
-    public abstract AbstractService<T> getService();
+    public abstract AbstractRepositories<T> getService();
 
     public void register(T entityClass) {
         if(entityClass.getId() == null){

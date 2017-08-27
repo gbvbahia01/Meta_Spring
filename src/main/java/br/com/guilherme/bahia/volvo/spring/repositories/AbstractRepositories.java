@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.services;
+package br.com.guilherme.bahia.volvo.spring.repositories;
 
-import br.com.guilherme.bahia.meta_2.spring.models.ModelContract;
+import br.com.guilherme.bahia.volvo.spring.models.ModelContract;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -21,12 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Guilherme
  */
 @Transactional
-public abstract class AbstractService<T extends ModelContract> implements Serializable {
+public abstract class AbstractRepositories<T extends ModelContract> implements Serializable {
 
     public abstract EntityManager getEntityManager();
     private Class<T> entityClass;
 
-    public AbstractService(Class<T> entityClass) {
+    public AbstractRepositories(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 

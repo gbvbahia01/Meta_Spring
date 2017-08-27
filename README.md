@@ -6,8 +6,34 @@ Next step is to do a JMS with Spring
 #Setup
 Setup this project is easy.   
 Run the DB.sql in a DB that you prefer.   
-Configure persistence.xml and applicationContext.xml for this DB.   
-Update the database.properties file   
+Configure applicationContext.xml for this DB.   
+
+
+Tomcat server folder CATALINA_HOME/conf/server.xml setup database JNDI to be used by application:
+
+```xml
+    <GlobalNamingResources>
+        ...
+                      
+        <Resource name="jdbc/postgres/db" 
+                      auth="Container"
+                      type="javax.sql.DataSource"
+                      driverClassName="org.postgresql.Driver"
+                      url="jdbc:postgresql://localhost:5432/postgres"
+                      removeAbandonedOnBorrow="true"
+                      removeAbandonedOnMaintenance="true"
+                      timeBetweenEvictionRunsMillis="10000"
+                      removeAbandonedTimeout="60"
+                      logAbandoned="true"
+                      username="postgres" 
+                      password="123456"
+                      maxTotal="20"
+                      maxIdle="10"
+                      maxWaitMillis="-1"/>
+        ...
+    </GlobalNamingResources>
+```
+
 Run the system.
 
 #API REST

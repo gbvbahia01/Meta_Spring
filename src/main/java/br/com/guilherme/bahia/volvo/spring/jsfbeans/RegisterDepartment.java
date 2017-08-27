@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
+package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 
-import br.com.guilherme.bahia.meta_2.spring.models.Department;
-import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
-import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
+import br.com.guilherme.bahia.volvo.spring.models.Department;
+import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
+import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositories;
 import com.sun.media.sound.SoftEnvelopeGenerator;
 import java.io.Serializable;
 import java.util.List;
@@ -26,15 +26,15 @@ import javax.faces.context.FacesContext;
 public class RegisterDepartment extends Register<Department> implements Serializable {
 
     @ManagedProperty("#{depService}")
-    private DepartmentService depService;
+    private DepartmentRepositories depService;
 
     private Department dpt = new Department();
 
-    public DepartmentService getDepService() {
+    public DepartmentRepositories getDepService() {
         return depService;
     }
 
-    public void setDepService(DepartmentService depService) {
+    public void setDepService(DepartmentRepositories depService) {
         this.depService = depService;
     }
 
@@ -67,7 +67,7 @@ public class RegisterDepartment extends Register<Department> implements Serializ
     }
 
     @Override
-    public AbstractService<Department> getService() {
+    public AbstractRepositories<Department> getService() {
         return getDepService();
     }
 

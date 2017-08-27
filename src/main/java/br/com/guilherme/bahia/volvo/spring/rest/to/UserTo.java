@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.rest.to;
+package br.com.guilherme.bahia.volvo.spring.rest.to;
 
-import br.com.guilherme.bahia.meta_2.spring.models.Permission;
-import br.com.guilherme.bahia.meta_2.spring.models.User;
+import br.com.guilherme.bahia.volvo.spring.models.Permission;
+import br.com.guilherme.bahia.volvo.spring.models.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

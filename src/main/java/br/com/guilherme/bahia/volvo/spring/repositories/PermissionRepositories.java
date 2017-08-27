@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.services;
+package br.com.guilherme.bahia.volvo.spring.repositories;
 
-import br.com.guilherme.bahia.meta_2.spring.models.Permission;
+import br.com.guilherme.bahia.volvo.spring.models.Permission;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,12 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Component(value = "perService")
 @Transactional
-public class PermissionService extends AbstractService<Permission> implements Serializable{
+public class PermissionRepositories extends AbstractRepositories<Permission> implements Serializable{
 
     @PersistenceContext
     private EntityManager em;
 
-    public PermissionService() {
+    public PermissionRepositories() {
         super(Permission.class);
     }
 

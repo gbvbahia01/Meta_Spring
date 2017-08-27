@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
+package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 
-import br.com.guilherme.bahia.meta_2.spring.models.Department;
-import br.com.guilherme.bahia.meta_2.spring.models.Permission;
-import br.com.guilherme.bahia.meta_2.spring.models.User;
-import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
-import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
-import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
-import br.com.guilherme.bahia.meta_2.spring.services.UserService;
+import br.com.guilherme.bahia.volvo.spring.models.Department;
+import br.com.guilherme.bahia.volvo.spring.models.Permission;
+import br.com.guilherme.bahia.volvo.spring.models.User;
+import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
+import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositories;
+import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositories;
+import br.com.guilherme.bahia.volvo.spring.repositories.UserRepositories;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -27,11 +27,11 @@ import javax.faces.bean.ViewScoped;
 public class RegisterUser extends Register<User> implements Serializable {
 
     @ManagedProperty("#{userService}")
-    private UserService userService;
+    private UserRepositories userService;
     @ManagedProperty("#{depService}")
-    private DepartmentService depService;
+    private DepartmentRepositories depService;
     @ManagedProperty("#{perService}")
-    private PermissionService perService;
+    private PermissionRepositories perService;
 
     private User user = new User();
 
@@ -56,7 +56,7 @@ public class RegisterUser extends Register<User> implements Serializable {
     }
 
     @Override
-    public AbstractService<User> getService() {
+    public AbstractRepositories<User> getService() {
         return getUserService();
     }
 
@@ -72,19 +72,19 @@ public class RegisterUser extends Register<User> implements Serializable {
         return userService.findAll();
     }
 
-    public DepartmentService getDepService() {
+    public DepartmentRepositories getDepService() {
         return depService;
     }
 
-    public void setDepService(DepartmentService depService) {
+    public void setDepService(DepartmentRepositories depService) {
         this.depService = depService;
     }
 
-    public UserService getUserService() {
+    public UserRepositories getUserService() {
         return userService;
     }
 
-    public void setUserService(UserService userService) {
+    public void setUserService(UserRepositories userService) {
         this.userService = userService;
     }
 
@@ -96,11 +96,11 @@ public class RegisterUser extends Register<User> implements Serializable {
         this.user = user;
     }
 
-    public PermissionService getPerService() {
+    public PermissionRepositories getPerService() {
         return perService;
     }
 
-    public void setPerService(PermissionService perService) {
+    public void setPerService(PermissionRepositories perService) {
         this.perService = perService;
     }
 

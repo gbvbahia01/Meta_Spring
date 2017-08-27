@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.rest;
+package br.com.guilherme.bahia.volvo.spring.rest;
 
-import br.com.guilherme.bahia.meta_2.spring.models.User;
-import br.com.guilherme.bahia.meta_2.spring.rest.to.UserTo;
-import br.com.guilherme.bahia.meta_2.spring.services.DepartmentService;
-import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
-import br.com.guilherme.bahia.meta_2.spring.services.UserService;
+import br.com.guilherme.bahia.volvo.spring.models.User;
+import br.com.guilherme.bahia.volvo.spring.rest.to.UserTo;
+import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositories;
+import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositories;
+import br.com.guilherme.bahia.volvo.spring.repositories.UserRepositories;
 import java.util.List;
 import javax.inject.Inject;
 import org.slf4j.Logger;
@@ -33,11 +33,11 @@ public class UserRest {
     private static final Logger logger = LoggerFactory.getLogger(UserRest.class);
 
     @Inject
-    private UserService userService;
+    private UserRepositories userService;
     @Inject
-    private PermissionService perService;
+    private PermissionRepositories perService;
     @Inject
-    private DepartmentService dptService;
+    private DepartmentRepositories dptService;
 
     @RequestMapping(value = URIConstants.GET_USER, method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody

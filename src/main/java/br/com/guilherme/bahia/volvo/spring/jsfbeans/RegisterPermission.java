@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.jsfbeans;
+package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 
-import br.com.guilherme.bahia.meta_2.spring.models.Permission;
-import br.com.guilherme.bahia.meta_2.spring.services.AbstractService;
-import br.com.guilherme.bahia.meta_2.spring.services.PermissionService;
+import br.com.guilherme.bahia.volvo.spring.models.Permission;
+import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
+import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositories;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -23,7 +23,7 @@ import javax.faces.bean.ViewScoped;
 public class RegisterPermission extends Register<Permission> implements Serializable {
 
     @ManagedProperty("#{perService}")
-    private PermissionService perService;
+    private PermissionRepositories perService;
 
     private Permission permission = new Permission();
 
@@ -48,7 +48,7 @@ public class RegisterPermission extends Register<Permission> implements Serializ
     }
 
     @Override
-    public AbstractService<Permission> getService() {
+    public AbstractRepositories<Permission> getService() {
         return getPerService();
     }
 
@@ -60,11 +60,11 @@ public class RegisterPermission extends Register<Permission> implements Serializ
         this.permission = permission;
     }
 
-    public PermissionService getPerService() {
+    public PermissionRepositories getPerService() {
         return perService;
     }
 
-    public void setPerService(PermissionService perService) {
+    public void setPerService(PermissionRepositories perService) {
         this.perService = perService;
     }
 

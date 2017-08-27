@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.bahia.meta_2.spring.models;
+package br.com.guilherme.bahia.volvo.spring.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,7 +142,7 @@ public class User implements ModelContract {
 
     @Override
     public String toString() {
-        return "br.com.guilherme.bahia.meta_2.spring.models.User[ id=" + id + " ]";
+        return "User[ id=" + id + " ]";
     }
     
 }
