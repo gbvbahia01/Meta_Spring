@@ -4,7 +4,7 @@ I am doing a small app about the integration those frameworks.
 
 ## Setup
 1.  Run the DB.sql in a Postgres db.   
-    * If you will use another database you must setup applicationContext.xml for this DB.   
+    *If you will use another database you must setup applicationContext.xml for this DB*.   
 
 2.  Put the Postgres Jar in the CATALINA_HOME/lib.
 3.  Setup CATALINA_HOME/conf/server.xml with resource  Database Connection Pool (DBCP) to be used by application:
