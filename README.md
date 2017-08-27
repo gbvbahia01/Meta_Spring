@@ -15,7 +15,7 @@ Tomcat server folder CATALINA_HOME/conf/server.xml setup database JNDI to be use
     <GlobalNamingResources>
         ...
                       
-        <Resource name="jdbc/postgres/db" 
+        <Resource name="jdbc/postgresdb" 
                       auth="Container"
                       type="javax.sql.DataSource"
                       driverClassName="org.postgresql.Driver"
@@ -46,55 +46,32 @@ http://localhost:8080/Spring/rest/usrs
 
 ###Create User   (POST)
 http://localhost:8080/Spring/rest/usr/create   
-Body:
+Body: (Create UserPermission and Department before and update json values)
 ```json
-{   
-   "name": "REST",   
-   "description": "REST DESC",   
-   "userPermissionList":    [   
-            {   
-         "id": 0,   
-         "name": "Usuario",   
-         "description": "usuario"   
-      },   
-            {   
-         "id": 5,   
-         "name": "Admin",   
-         "description": "Super User"  }   
-   ],   
-   "dept":    {   
-      "id": 3,   
-      "name": "Finance",   
-      "description": "A lot of money"   
-   }   
-}   
+{  
+   "name":"REST",
+   "description":"REST DESC",
+   "idPermissions":[  
+      1,
+      2
+   ],
+   "idDepartment":1
+} 
 ```
 ###Update User   (POST)
 http://localhost:8080/Spring/rest/usr/update   
 Body:  
 ```json 
-{   
-   "id" : 1,   
-   "name": "REST_UP_UP",   
-   "description": "REST DESC UP",   
-   "userPermissionList":    [   
-            {   
-         "id": 2,   
-         "name": "Usuario",   
-         "description": "usuario"   
-      },   
-            {   
-         "id": 5,   
-         "name": "Admin",   
-         "description": "Super User"   
-      }   
-   ],   
-   "dept":    {   
-      "id": 3,   
-      "name": "Finance",   
-      "description": "A lot of money"   
-   }   
-}   
+{  
+   "id":3,
+   "name":"REST",
+   "description":"REST DESC UPDATED",
+   "idPermissions":[  
+      1,
+      2
+   ],
+   "idDepartment":1
+} 
 ```
 
 ###Delete User by ID   (POST)

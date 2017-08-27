@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/Spring">
-    <ResourceLink global="jdbc/postgres/db" name="jdbc/postgres" type="javax.sql.DataSource"/>
+    <ResourceLink global="jdbc/postgresdb" name="jdbc/postgresdb" type="javax.sql.DataSource"/>
 </Context>

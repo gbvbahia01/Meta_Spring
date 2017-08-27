@@ -35,8 +35,8 @@
     <!-- Scan for all of Spring components such as Spring Service -->
     <context:component-scan base-package="br.com.guilherme.bahia.volvo.spring"></context:component-scan>
     
-    <jee:jndi-lookup id="dataSource" jndi-name="java:/comp/env/jdbc/postgres" expected-type="javax.sql.DataSource"/>
-    <jpa:repositories base-package="br.com.gbvbahia.smvc.taskify.dao" />
+    <jee:jndi-lookup id="dataSource" jndi-name="java:/comp/env/jdbc/postgresdb" expected-type="javax.sql.DataSource"/>
+    <jpa:repositories base-package="br.com.guilherme.bahia.volvo.spring.repositories" />
  
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
@@ -57,7 +57,7 @@
                 <property name="database" value="POSTGRESQL" />
             </bean>
         </property>
-        <property name="packagesToScan" value="br.com.gbvbahia.smvc.taskify.domain"/>
+        <property name="packagesToScan" value="br.com.guilherme.bahia.volvo.spring.models"/>
         <property name="sharedCacheMode" value="ENABLE_SELECTIVE"/>
         <property name="validationMode" value="NONE"/>
     </bean>
@@ -66,8 +66,27 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
     <!-- Detect @Transactional -->
     <tx:annotation-driven transaction-manager="transactionManager" />
-    <!--tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/-->
+    <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
+    
     <bean id="transactiontemplate" class="org.springframework.transaction.support.TransactionTemplate">
         <property name="transactionManager" ref="transactionManager"></property>
     </bean>
+    
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- the transactional semantics... -->
+		<tx:attributes>
+			<!-- all methods starting with 'get' are read-only -->
+			<tx:method name="find*" read-only="true" />
+			<!-- other methods use the default transaction settings (see below) -->
+			<tx:method name="*" isolation="DEFAULT" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- ensure that the above transactional advice runs for any execution of 
+		an operation defined by the FooService interface -->
+	<aop:config>
+		<aop:pointcut id="allRepositoryMethods"
+			expression="execution(* br.com.guilherme.bahia.volvo.spring.repositories.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allRepositoryMethods" />
+	</aop:config>
 </beans>

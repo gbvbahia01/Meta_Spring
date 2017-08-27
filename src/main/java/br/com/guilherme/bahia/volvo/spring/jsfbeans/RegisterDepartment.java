@@ -6,13 +6,12 @@
 package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 
 import br.com.guilherme.bahia.volvo.spring.models.Department;
-import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
-import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositories;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositorie;
 
 /**
  *
@@ -20,19 +19,20 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterDepartment extends Register<Department> implements Serializable {
+public class RegisterDepartment extends Register<Department, DepartmentRepositorie> implements Serializable {
 
-    @ManagedProperty("#{departmentRepositories}")
-    private DepartmentRepositories depService;
+    @ManagedProperty("#{departmentRepositorie}")
+    private DepartmentRepositorie depRep;
 
     private Department dpt = new Department();
 
-    public DepartmentRepositories getDepService() {
-        return depService;
+    @Override
+    public DepartmentRepositorie getRepository() {
+        return depRep;
     }
 
-    public void setDepService(DepartmentRepositories depService) {
-        this.depService = depService;
+    public void setDepRep(DepartmentRepositorie depRep) {
+        this.depRep = depRep;
     }
 
     public Department getDepartment() {
@@ -63,17 +63,12 @@ public class RegisterDepartment extends Register<Department> implements Serializ
         dpt = new Department();
     }
 
-    @Override
-    public AbstractRepositories<Department> getService() {
-        return getDepService();
-    }
-
     public List<Department> getAllDepartments() {
-        return depService.findAll();
+        return depRep.findAll();
     }
 
     public void setDepEdit(Integer dep) {
-        this.dpt = depService.getById(dep);
+        this.dpt = depRep.findOne(dep);
     }
 
     public Integer getDepEdit() {

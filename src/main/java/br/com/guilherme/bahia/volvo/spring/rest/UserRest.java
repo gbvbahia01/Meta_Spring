@@ -7,9 +7,6 @@ package br.com.guilherme.bahia.volvo.spring.rest;
 
 import br.com.guilherme.bahia.volvo.spring.models.User;
 import br.com.guilherme.bahia.volvo.spring.rest.to.UserTo;
-import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositories;
-import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositories;
-import br.com.guilherme.bahia.volvo.spring.repositories.UserRepositories;
 import java.util.List;
 import javax.inject.Inject;
 import org.slf4j.Logger;
@@ -20,37 +17,40 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositorie;
+import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositorie;
+import br.com.guilherme.bahia.volvo.spring.repositories.UserRepositorie;
 
 /**
  *
  * @author Guilherme
  */
-@Controller
+@RestController
 public class UserRest {
 
     private static final Logger logger = LoggerFactory.getLogger(UserRest.class);
 
     @Inject
-    private UserRepositories userService;
+    private UserRepositorie userRep;
     @Inject
-    private PermissionRepositories perService;
+    private PermissionRepositorie perRep;
     @Inject
-    private DepartmentRepositories dptService;
+    private DepartmentRepositorie dptRep;
 
     @RequestMapping(value = URIConstants.GET_USER, method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     UserTo getUser(@PathVariable("id") int usrId) {
         logger.info("Start getUser. ID=" + usrId);
-        return new UserTo(userService.getById(usrId));
+        return new UserTo(userRep.findOne(usrId));
     }
 
     @RequestMapping(value = URIConstants.GET_ALL_USER, method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     List<UserTo> getUsers() {
         logger.info("Start findAll");
-        return UserTo.toList(userService.findAll());
+        return UserTo.toList(userRep.findAll());
     }
 
     @RequestMapping(value = URIConstants.CREATE_USER, method = RequestMethod.POST,
@@ -60,10 +60,7 @@ public class UserRest {
         logger.info("Start createUser");
         User user = toUser(userTo);
         user.setId(null);
-        Integer id = (Integer) userService.register(user);
-        UserTo to = new UserTo(user);
-        to.setId(id);
-        return to;
+        return new UserTo(userRep.save(toUser(userTo)));
     }
 
     @RequestMapping(value = URIConstants.UPDATE_USER, method = RequestMethod.POST,
@@ -75,7 +72,7 @@ public class UserRest {
             throw new IllegalArgumentException("User Id cannot be NULL");
         }
         User user = toUser(userTo);
-        userService.update(user);
+        userRep.save(user);
         UserTo to = new UserTo(user);
         return to;
     }
@@ -87,7 +84,7 @@ public class UserRest {
         if (usrId <= 0) {
             throw new IllegalArgumentException("Invalid USER ID");
         }
-        userService.delete(userService.getById(usrId));
+        userRep.delete(usrId);
         return new ResponseEntity<UserTo>(HttpStatus.OK);
     }
 
@@ -97,11 +94,11 @@ public class UserRest {
         usr.setDescription(to.getDescription());
         usr.setId(to.getId());
         if (to.getIdDepartment() != null) {
-            usr.setDept(dptService.getById(to.getIdDepartment()));
+            usr.setDept(dptRep.findOne(to.getIdDepartment()));
         }
         if (!to.getIdPermissions().isEmpty()) {
             for (Integer pId : to.getIdPermissions()) {
-                usr.getUserPermissionList().add(perService.getById(pId));
+                usr.getUserPermissionList().add(perRep.findOne(pId));
             }
         }
         return usr;

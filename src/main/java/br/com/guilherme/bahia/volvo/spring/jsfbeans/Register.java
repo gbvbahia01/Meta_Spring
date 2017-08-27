@@ -6,36 +6,32 @@
 package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 
 import br.com.guilherme.bahia.volvo.spring.models.ModelContract;
-import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Guilherme
  */
-public abstract class Register<T extends ModelContract> implements Serializable {
+public abstract class Register<T extends ModelContract, R extends JpaRepository> implements Serializable {
 
-    public abstract AbstractRepositories<T> getService();
+    public abstract R getRepository();
 
     public void register(T entityClass) {
-        if(entityClass.getId() == null){
-            getService().register(entityClass);
-        }else{
-            getService().update(entityClass);
-        }
+            getRepository().save(entityClass);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("The " + entityClass.getClass().getSimpleName() + ": "
-                        + entityClass.getName() + " Is Registered Successfully"));
+                        + entityClass.getName() + " Was Registered Successfully"));
         return;
     }
 
     public void remove(T entityClass) {
-        getService().delete(entityClass);
+        getRepository().delete(entityClass.getId());
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("The " + entityClass.getClass().getSimpleName() + ": "
-                        + entityClass.getName() + " Is Removed Successfully"));
+                        + entityClass.getName() + " Was Removed Successfully"));
         return;
     }
 

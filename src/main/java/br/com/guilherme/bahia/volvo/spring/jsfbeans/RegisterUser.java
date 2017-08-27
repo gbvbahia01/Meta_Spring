@@ -8,15 +8,14 @@ package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 import br.com.guilherme.bahia.volvo.spring.models.Department;
 import br.com.guilherme.bahia.volvo.spring.models.Permission;
 import br.com.guilherme.bahia.volvo.spring.models.User;
-import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
-import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositories;
-import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositories;
-import br.com.guilherme.bahia.volvo.spring.repositories.UserRepositories;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositorie;
+import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositorie;
+import br.com.guilherme.bahia.volvo.spring.repositories.UserRepositorie;
 
 /**
  *
@@ -24,14 +23,14 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterUser extends Register<User> implements Serializable {
+public class RegisterUser extends Register<User, UserRepositorie> implements Serializable {
 
-    @ManagedProperty("#{userRepositories}")
-    private UserRepositories userService;
-    @ManagedProperty("#{departmentRepositories}")
-    private DepartmentRepositories depService;
-    @ManagedProperty("#{permissionRepositories}")
-    private PermissionRepositories perService;
+    @ManagedProperty("#{userRepositorie}")
+    private UserRepositorie userRep;
+    @ManagedProperty("#{departmentRepositorie}")
+    private DepartmentRepositorie depRep;
+    @ManagedProperty("#{permissionRepositorie}")
+    private PermissionRepositorie perRep;
 
     private User user = new User();
 
@@ -55,37 +54,32 @@ public class RegisterUser extends Register<User> implements Serializable {
         user = new User();
     }
 
-    @Override
-    public AbstractRepositories<User> getService() {
-        return getUserService();
-    }
-
     public List<Department> getAllDeparts() {
-        return depService.findAll();
+        return depRep.findAll();
     }
 
     public List<Permission> getAllPermissions() {
-        return perService.findAll();
+        return perRep.findAll();
     }
 
     public List<User> getAllUsers() {
-        return userService.findAll();
+        return userRep.findAll();
     }
 
-    public DepartmentRepositories getDepService() {
-        return depService;
+    public DepartmentRepositorie getDepRep() {
+        return depRep;
     }
 
-    public void setDepService(DepartmentRepositories depService) {
-        this.depService = depService;
+    public void setDepRep(DepartmentRepositorie depRep) {
+        this.depRep = depRep;
     }
 
-    public UserRepositories getUserService() {
-        return userService;
+    public UserRepositorie getUserRep() {
+        return userRep;
     }
 
-    public void setUserService(UserRepositories userService) {
-        this.userService = userService;
+    public void setUserRep(UserRepositorie userRep) {
+        this.userRep = userRep;
     }
 
     public User getUser() {
@@ -96,20 +90,25 @@ public class RegisterUser extends Register<User> implements Serializable {
         this.user = user;
     }
 
-    public PermissionRepositories getPerService() {
-        return perService;
+    public PermissionRepositorie getPerRep() {
+        return perRep;
     }
 
-    public void setPerService(PermissionRepositories perService) {
-        this.perService = perService;
+    public void setPerRep(PermissionRepositorie perRep) {
+        this.perRep = perRep;
     }
 
     public void setUserEdit(Integer user) {
-        this.user = userService.getById(user);
+        this.user = userRep.findOne(user);
     }
 
     public Integer getUserEdit() {
         return this.user.getId();
+    }
+
+    @Override
+    public UserRepositorie getRepository() {
+       return userRep;
     }
 
 }

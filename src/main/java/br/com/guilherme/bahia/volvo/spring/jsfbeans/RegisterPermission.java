@@ -6,13 +6,12 @@
 package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 
 import br.com.guilherme.bahia.volvo.spring.models.Permission;
-import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
-import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositories;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import br.com.guilherme.bahia.volvo.spring.repositories.PermissionRepositorie;
 
 /**
  *
@@ -20,10 +19,10 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class RegisterPermission extends Register<Permission> implements Serializable {
+public class RegisterPermission extends Register<Permission, PermissionRepositorie> implements Serializable {
 
-    @ManagedProperty("#{permissionRepositories}")
-    private PermissionRepositories perService;
+    @ManagedProperty("#{permissionRepositorie}")
+    private PermissionRepositorie perRep;
 
     private Permission permission = new Permission();
 
@@ -47,11 +46,6 @@ public class RegisterPermission extends Register<Permission> implements Serializ
         permission = new Permission();
     }
 
-    @Override
-    public AbstractRepositories<Permission> getService() {
-        return getPerService();
-    }
-
     public Permission getPermission() {
         return permission;
     }
@@ -60,23 +54,28 @@ public class RegisterPermission extends Register<Permission> implements Serializ
         this.permission = permission;
     }
 
-    public PermissionRepositories getPerService() {
-        return perService;
+    public PermissionRepositorie getPerRep() {
+        return perRep;
     }
 
-    public void setPerService(PermissionRepositories perService) {
-        this.perService = perService;
+    public void setPerRep(PermissionRepositorie perRep) {
+        this.perRep = perRep;
     }
 
     public List<Permission> getAllPermissions() {
-        return perService.findAll();
+        return perRep.findAll();
     }
 
     public void setPermEdit(Integer user) {
-        this.permission = perService.getById(user);
+        this.permission = perRep.findOne(user);
     }
 
     public Integer getPermEdit() {
         return this.permission.getId();
+    }
+
+    @Override
+    public PermissionRepositorie getRepository() {
+        return this.perRep;
     }
 }
