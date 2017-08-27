@@ -8,8 +8,8 @@ Setup this project is easy.
 Run the DB.sql in a DB that you prefer.   
 Configure applicationContext.xml for this DB.   
 
-Put the Postgres Jar in the CATALINA_HOME/lib.
-Setup CATALINA_HOME/conf/server.xml with resource  Database Connection Pool (DBCP) to be used by application:
+1.  Put the Postgres Jar in the CATALINA_HOME/lib.
+2.  Setup CATALINA_HOME/conf/server.xml with resource  Database Connection Pool (DBCP) to be used by application:
 
 ```xml
     <GlobalNamingResources>
