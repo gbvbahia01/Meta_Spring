@@ -3,11 +3,11 @@ This is a small system with Spring 4, Hybernate 4 (JPA), PrimeFaces 5 e Maven 3 
 I am doing a small app about the integration those frameworks.   
 
 ## Setup
-Run the DB.sql in a Postgres db.   
+1.  Run the DB.sql in a Postgres db.   
     * If you will use another database you must setup applicationContext.xml for this DB.   
 
-1.  Put the Postgres Jar in the CATALINA_HOME/lib.
-2.  Setup CATALINA_HOME/conf/server.xml with resource  Database Connection Pool (DBCP) to be used by application:
+2.  Put the Postgres Jar in the CATALINA_HOME/lib.
+3.  Setup CATALINA_HOME/conf/server.xml with resource  Database Connection Pool (DBCP) to be used by application:
 
 ```xml
     <GlobalNamingResources>
@@ -31,10 +31,10 @@ Run the DB.sql in a Postgres db.
         ...
     </GlobalNamingResources>
 ```
-3.  Download and install [ActiveMQ](http://activemq.apache.org)
-4.  Update the pom property *apachemq-version* if you downloaded a version of ApacheMQ that is not 5.15.0
-5.  Build the application.
-6.  Run the application.
+4.  Download and install [ActiveMQ](http://activemq.apache.org)
+5.  Update the pom property *apachemq-version* if you downloaded a version of ApacheMQ that is not 5.15.0
+6.  Build the application.
+7.  Run the application.
 
 ## API REST
 Links to call and some parameters to test create and update.   
