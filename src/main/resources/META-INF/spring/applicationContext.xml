@@ -89,4 +89,8 @@
 			expression="execution(* br.com.guilherme.bahia.volvo.spring.repositories.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="allRepositoryMethods" />
 	</aop:config>
+        
+        <!-- QUEUES -->
+        
+        
 </beans>

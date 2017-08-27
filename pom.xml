@@ -17,9 +17,22 @@
         <slf4j.version>1.7.5</slf4j.version>
         <org.aspectj-version>1.7.4</org.aspectj-version>
         <jackson.databind-version>2.8.0</jackson.databind-version>
+        <apachemq-version>5.15.0</apachemq-version>
+        <hibernate-version>4.3.8.Final</hibernate-version>
     </properties>
     
     <dependencies>
+        <!-- JMS -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-spring</artifactId>
+            <version>${apachemq-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring_version}</version>
+        </dependency>
         <!-- Faces Implementation -->
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -60,12 +73,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.8.Final</version>
+            <version>${hibernate-version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.8.Final</version>
+            <version>${hibernate-version}</version>
         </dependency>
         <!-- Spring ORM -->
         <dependency>
@@ -125,7 +138,7 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind-version}</version>
         </dependency>
-         <!-- AspectJ -->
+        <!-- AspectJ -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>

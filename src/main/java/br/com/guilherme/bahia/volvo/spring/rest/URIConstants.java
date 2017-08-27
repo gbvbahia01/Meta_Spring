@@ -15,4 +15,6 @@ public class URIConstants {
 	public static final String CREATE_USER = "/rest/usr/create";
         public static final String UPDATE_USER = "/rest/usr/update";
 	public static final String DELETE_USER = "/rest/usr/delete/{id}";
+        
+        public static final String CREATE_DEPARTMENT = "/rest/dep/create";
 }

@@ -1,7 +1,6 @@
 # Concept Proof (Spring 4)
-This is a small system with Spring 4, Hybernate 4 (JPA), PrimeFaces 5 e Maven 3 running at Tomcat.   
+This is a small system with Spring 4, Hybernate 4 (JPA), PrimeFaces 5 e Maven 3 running at Tomcat and ActiveMQ for QUEUE.   
 I am doing a small app about the integration those frameworks.   
-Next step is to do a JMS with Spring
 
 ## Setup
 Run the DB.sql in a Postgres db.   
@@ -32,8 +31,10 @@ Run the DB.sql in a Postgres db.
         ...
     </GlobalNamingResources>
 ```
-3.  Build the application.
-4.  Run the system.
+3.  Download and install [ActiveMQ](http://activemq.apache.org)
+4.  Update the pom propertie apachemq-version if you downloaded a version of ApacheMQ different of 5.15.0
+5.  Build the application.
+6.  Run the application.
 
 ## API REST
 Links to call and some parameters to test create and update.   
@@ -77,3 +78,15 @@ Body:
 http://localhost:8080/Spring/rest/usr/delete/{id}
 
 
+### Create a Department (POST)
+*This Rest service uses a JMS queue to save new Departments.*
+*The Spring configuration of the JMS was made using a Configuration class instead Spring XML*
+*Look at package **br.com.guilherme.bahia.volvo.spring.jms.setup** to see all JMS Spring setup*
+
+http://localhost:8080/Spring/rest/dep/create
+Body:  
+```json 
+{  
+   "name":"DEP_REST_JMS",
+   "description":"REST JMS DESC UPDATED"
+} 
