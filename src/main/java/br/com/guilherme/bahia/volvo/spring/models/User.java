@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Guilherme
  */
 @Entity
-@Table(name = "USER")
+@Table(name = "user_system")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
@@ -44,27 +44,27 @@ public class User implements ModelContract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
     @Size(max = 45, min = 2, message = "User name must be between 2 and 45")
-    @Column(name = "NAME")
+    @Column(name = "name")
     @NotNull(message = "User name required")
     private String name;
     @Size(max = 45)
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
     
-    @JoinTable(name = "USER_PERMISSION",
+    @JoinTable(name = "user_permission",
     joinColumns = {
-        @JoinColumn(name = "USER_ID",
-        referencedColumnName = "ID")},
+        @JoinColumn(name = "user_id",
+        referencedColumnName = "id")},
     inverseJoinColumns =
-    @JoinColumn(name = "PERM_ID",
-    referencedColumnName = "ID"))
+    @JoinColumn(name = "perm_id",
+    referencedColumnName = "id"))
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> userPermissionList;
     
-    @JoinColumn(name = "DEPT_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "dept_id", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.EAGER)
     private Department dept;
 

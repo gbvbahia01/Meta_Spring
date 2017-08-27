@@ -26,11 +26,11 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class RegisterUser extends Register<User> implements Serializable {
 
-    @ManagedProperty("#{userService}")
+    @ManagedProperty("#{userRepositories}")
     private UserRepositories userService;
-    @ManagedProperty("#{depService}")
+    @ManagedProperty("#{departmentRepositories}")
     private DepartmentRepositories depService;
-    @ManagedProperty("#{perService}")
+    @ManagedProperty("#{permissionRepositories}")
     private PermissionRepositories perService;
 
     private User user = new User();

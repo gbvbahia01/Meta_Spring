@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Guilherme
  */
 @Entity
-@Table(name = "DEPARTMENT")
+@Table(name = "department")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d"),
@@ -36,14 +36,14 @@ public class Department implements ModelContract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
     @Size(max = 45, min = 2, message = "Department name must be between 2 and 45")
-    @Column(name = "NAME")
+    @Column(name = "name")
     @NotNull(message = "Department name required")
     private String name;
     @Size(max = 45)
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
 
 

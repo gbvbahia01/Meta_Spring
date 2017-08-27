@@ -10,14 +10,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Guilherme
  */
-@Component
+@Repository
 @Transactional
 public class UserRepositories extends AbstractRepositories<User>  implements Serializable{
     

@@ -22,7 +22,7 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class RegisterPermission extends Register<Permission> implements Serializable {
 
-    @ManagedProperty("#{perService}")
+    @ManagedProperty("#{permissionRepositories}")
     private PermissionRepositories perService;
 
     private Permission permission = new Permission();

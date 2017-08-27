@@ -8,14 +8,11 @@ package br.com.guilherme.bahia.volvo.spring.jsfbeans;
 import br.com.guilherme.bahia.volvo.spring.models.Department;
 import br.com.guilherme.bahia.volvo.spring.repositories.AbstractRepositories;
 import br.com.guilherme.bahia.volvo.spring.repositories.DepartmentRepositories;
-import com.sun.media.sound.SoftEnvelopeGenerator;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -25,7 +22,7 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class RegisterDepartment extends Register<Department> implements Serializable {
 
-    @ManagedProperty("#{depService}")
+    @ManagedProperty("#{departmentRepositories}")
     private DepartmentRepositories depService;
 
     private Department dpt = new Department();
