@@ -32,7 +32,7 @@ Run the DB.sql in a Postgres db.
     </GlobalNamingResources>
 ```
 3.  Download and install [ActiveMQ](http://activemq.apache.org)
-4.  Update the pom propertie apachemq-version if you downloaded a version of ApacheMQ different of 5.15.0
+4.  Update the pom property apachemq-version if you downloaded a version of ApacheMQ different of 5.15.0
 5.  Build the application.
 6.  Run the application.
 
