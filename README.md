@@ -46,7 +46,7 @@ http://localhost:8080/Spring/rest/usrs
 
 ### Create User   (POST)
 http://localhost:8080/Spring/rest/usr/create   
-Body: (Create UserPermission and Department before and update json values)
+Body: (Create UserPermission and Department before and update idPermissions and idDepartment in json values)
 ```json
 {  
    "name":"REST",
