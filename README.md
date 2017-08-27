@@ -32,8 +32,8 @@ Run the DB.sql in a Postgres db.
         ...
     </GlobalNamingResources>
 ```
-
-Run the system.
+3.  Build the application.
+4.  Run the system.
 
 ## API REST
 Links to call and some parameters to test create and update.   
