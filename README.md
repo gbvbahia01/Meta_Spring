@@ -38,15 +38,16 @@ Run the system.
 
 #API REST
 Links to call and some parameters to test create and update.   
-###User by ID   
+###User by ID   (GET)
 http://localhost:8080/Spring/rest/usr/{id}
 
-###All Users   
+###All Users   (GET)
 http://localhost:8080/Spring/rest/usrs
 
-###Create User   
+###Create User   (POST)
 http://localhost:8080/Spring/rest/usr/create   
 Body:
+```json
 {   
    "name": "REST",   
    "description": "REST DESC",   
@@ -67,12 +68,13 @@ Body:
       "description": "A lot of money"   
    }   
 }   
-
-###Update User   
+```
+###Update User   (POST)
 http://localhost:8080/Spring/rest/usr/update   
-Body:   
+Body:  
+```json 
 {   
-	"id" : 1,   
+   "id" : 1,   
    "name": "REST_UP_UP",   
    "description": "REST DESC UP",   
    "userPermissionList":    [   
@@ -93,8 +95,9 @@ Body:
       "description": "A lot of money"   
    }   
 }   
+```
 
-###Delete User by ID   
+###Delete User by ID   (POST)
 http://localhost:8080/Spring/rest/usr/delete/{id}
 
 
