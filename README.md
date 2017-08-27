@@ -36,15 +36,15 @@ Configure applicationContext.xml for this DB.
 
 Run the system.
 
-#API REST
+## API REST
 Links to call and some parameters to test create and update.   
-###User by ID   (GET)
+### User by ID   (GET)
 http://localhost:8080/Spring/rest/usr/{id}
 
-###All Users   (GET)
+### All Users   (GET)
 http://localhost:8080/Spring/rest/usrs
 
-###Create User   (POST)
+### Create User   (POST)
 http://localhost:8080/Spring/rest/usr/create   
 Body: (Create UserPermission and Department before and update json values)
 ```json
@@ -58,7 +58,7 @@ Body: (Create UserPermission and Department before and update json values)
    "idDepartment":1
 } 
 ```
-###Update User   (POST)
+### Update User   (POST)
 http://localhost:8080/Spring/rest/usr/update   
 Body:  
 ```json 
@@ -74,7 +74,7 @@ Body:
 } 
 ```
 
-###Delete User by ID   (POST)
+### Delete User by ID   (POST)
 http://localhost:8080/Spring/rest/usr/delete/{id}
 
 
